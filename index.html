@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meet Shrimal — SDET Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #FAFAF8;
+      --fg: #1A1A1A;
+      --muted: #F5F3F0;
+      --muted-fg: #6B6B6B;
+      --accent: #B8860B;
+      --accent-light: #D4A84B;
+      --border: #E8E4DF;
+      --card: #FFFFFF;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'Source Sans 3', system-ui, sans-serif;
+      --font-mono: 'IBM Plex Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { text-decoration: none; }
+
+    /* ── LAYOUT ── */
+    .wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem 5rem;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0 2rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 4rem;
+    }
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      color: var(--fg);
+      letter-spacing: 0.02em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted-fg);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      padding: 3rem 0 4rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 4rem;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .dot {
+      width: 5px;
+      height: 5px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    .label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
+      font-weight: 400;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      color: var(--fg);
+      margin-bottom: 0.75rem;
+    }
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-sub {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted-fg);
+      margin-bottom: 1.5rem;
+    }
+    .hero-rule {
+      width: 40px;
+      height: 1px;
+      background: var(--accent);
+      margin: 0 auto 2.5rem;
+    }
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--muted-fg);
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.8;
+    }
+    .cta-row {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .btn-gold {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease-out;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-gold:hover { background: var(--accent-light); }
+    .btn-outline {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      background: transparent;
+      color: var(--fg);
+      border: 1px solid var(--fg);
+      cursor: pointer;
+      transition: all 0.2s ease-out;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-ghost {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 14px 24px;
+      background: transparent;
+      color: var(--muted-fg);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: all 0.2s ease-out;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── STATS ── */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-bottom: 4rem;
+      border: 1px solid var(--border);
+    }
+    .stat {
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .stat:last-child { border-right: none; }
+    .stat-n {
+      font-family: var(--font-serif);
+      font-size: 3rem;
+      font-weight: 400;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .stat-l {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted-fg);
+    }
+
+    /* ── SECTION LABELS ── */
+    section { margin-bottom: 4rem; }
+    .sec-label {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .sec-label .rl { flex: 1; height: 1px; background: var(--border); }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .skill-card {
+      background: var(--card);
+      padding: 1.75rem;
+    }
+    .skill-cat {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-size: 12px;
+      padding: 4px 10px;
+      border: 1px solid var(--border);
+      color: var(--fg);
+      background: var(--bg);
+    }
+    .tag.key {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--card);
+    }
+
+    /* ── EXPERIENCE ── */
+    .exp-item {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0 2rem 1.5rem;
+      position: relative;
+    }
+    .exp-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 2.65rem;
+      width: 4px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+    .exp-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.2rem;
+    }
+    .exp-role {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .exp-period {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      padding-top: 0.3rem;
+    }
+    .exp-co {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted-fg);
+      margin-bottom: 0.9rem;
+    }
+    .exp-list { list-style: none; display: flex; flex-direction: column; gap: 0.35rem; }
+    .exp-list li {
+      font-size: 14px;
+      color: var(--muted-fg);
+      line-height: 1.65;
+      display: flex;
+      gap: 0.6rem;
+    }
+    .exp-list li::before { content: '—'; color: var(--accent); flex-shrink: 0; }
+
+    /* ── CONTACT ── */
+    .contact-block {
+      border: 1px solid var(--border);
+      background: var(--card);
+      padding: 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .contact-block h2 {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+    }
+    .contact-block h2 em { font-style: italic; color: var(--accent); }
+    .contact-block .sub {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted-fg);
+    }
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      align-items: flex-end;
+    }
+    .clink {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      color: var(--muted-fg);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.2s;
+    }
+    .clink:hover { color: var(--accent); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-name {
+      font-family: var(--font-serif);
+      font-size: 0.95rem;
+      color: var(--muted-fg);
+    }
+    .footer-note {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .skills-grid { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr; }
+      .stat { border-right: none; border-bottom: 1px solid var(--border); }
+      .stat:last-child { border-bottom: none; }
+      .contact-block { flex-direction: column; }
+      .contact-links { align-items: flex-start; }
+      .nav-links { display: none; }
+      h1 { font-size: 2.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Meet Shrimal</div>
+    <ul class="nav-links">
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">
+      <span class="dot"></span>
+      <span class="label">Available for SDET Roles</span>
+      <span class="dot"></span>
+    </div>
+    <h1>Breaking <em>bugs</em> before<br>they break users.</h1>
+    <p class="hero-sub">Software Development Engineer in Test · Chennai</p>
+    <div class="hero-rule"></div>
+    <p class="hero-desc">3+ years building scalable automation frameworks using Playwright, Selenium & Python. Delivered 60% regression reduction across 250+ automated test cases. Skilled in API automation, SQL validation, and CI/CD integration.</p>
+    <div class="cta-row">
+      <a class="btn-gold" href="#contact">✉ Hire Me</a>
+      <a class="btn-outline" href="https://github.com/MeetShrimal19" target="_blank" rel="noopener">⌥ GitHub</a>
+      <a class="btn-ghost" href="https://raw.githubusercontent.com/MeetShrimal19/portfolio/main/Meet_Shrimal_Resume.pdf" target="_blank" rel="noopener" download="Meet_Shrimal_Resume.pdf">↓ Download Resume</a>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-n">250+</div>
+      <div class="stat-l">Test Cases Automated</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n">60%</div>
+      <div class="stat-l">Regression Effort Cut</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n">3+</div>
+      <div class="stat-l">Years Experience</div>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="sec-label">
+      <div class="rl"></div>
+      <span class="label">Tech Stack</span>
+      <div class="rl"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-cat">Automation</div>
+        <div class="tags">
+          <span class="tag key">Playwright</span>
+          <span class="tag key">Selenium</span>
+          <span class="tag">pytest</span>
+          <span class="tag">Page Object Model</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">Languages & API</div>
+        <div class="tags">
+          <span class="tag key">Python</span>
+          <span class="tag key">SQL</span>
+          <span class="tag">Postman</span>
+          <span class="tag">Swagger</span>
+          <span class="tag">Requests</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">CI / CD & Tools</div>
+        <div class="tags">
+          <span class="tag key">Jenkins</span>
+          <span class="tag">GitLab</span>
+          <span class="tag">GitHub Actions</span>
+          <span class="tag">Git</span>
+          <span class="tag">Jira</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-cat">AI & Methods</div>
+        <div class="tags">
+          <span class="tag key">Claude AI</span>
+          <span class="tag">GitHub Copilot</span>
+          <span class="tag">Agile</span>
+          <span class="tag">Scrum</span>
+          <span class="tag">OOP</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="sec-label">
+      <div class="rl"></div>
+      <span class="label">Experience</span>
+      <div class="rl"></div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-top">
+        <div class="exp-role">Software Development Engineer in Test</div>
+        <div class="exp-period">Sep 2024 — Present</div>
+      </div>
+      <div class="exp-co">Keuro Health &amp; Technology LLP (formerly Flooid.in) · Chennai</div>
+      <ul class="exp-list">
+        <li>Built Playwright &amp; Selenium frameworks — 250+ test cases across 10+ critical modules (cart, checkout, user profiles), cutting regression effort by 60%</li>
+        <li>Integrated CI/CD pipelines via Jenkins &amp; GitLab, supporting 3–4 production deploys per week with continuous testing and faster feedback</li>
+        <li>Built and executed API automation suites using Postman + Python (requests) + pytest, validating response contracts, status codes, and data integrity across 10+ flows</li>
+        <li>Performed backend data validation using SQL queries to ensure data integrity across APIs and database layers</li>
+        <li>Logged 100+ defects in Jira, coordinated full fix and retest cycles with dev teams</li>
+        <li>Leveraged Claude AI to generate test scenarios, identify edge cases, and improve test coverage efficiency</li>
+        <li>Owned and documented the full automation stack — Playwright, Selenium, pytest, Jenkins, GitLab, Postman — building reusable, scalable test infrastructure</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-top">
+        <div class="exp-role">QA Engineer</div>
+        <div class="exp-period">Jul 2023 — Aug 2024</div>
+      </div>
+      <div class="exp-co">Flooid.in · Remote</div>
+      <ul class="exp-list">
+        <li>Developed Selenium + Python automation scripts for 5+ core modules including homepage, PDP, and product flows</li>
+        <li>Configured and maintained Jenkins pipelines for scheduled execution during deployments — reduced manual effort by 30%</li>
+        <li>Designed and maintained a CRM API automation framework using Python, Pytest &amp; Requests with OOP-based design patterns, integrated with GitHub Actions CI/CD</li>
+        <li>Analyzed requirements and designed test scenarios for functional and regression coverage</li>
+        <li>Logged and tracked 100+ defects in Jira, performing retesting to confirm resolution</li>
+      </ul>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-top">
+        <div class="exp-role">B.E. Computer Science</div>
+        <div class="exp-period">2019 — 2023</div>
+      </div>
+      <div class="exp-co">Geetanjali Institute of Technical Studies, RTU · Udaipur</div>
+      <ul class="exp-list">
+        <li>Graduated with 87% — strong foundation in CS fundamentals</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="sec-label">
+      <div class="rl"></div>
+      <span class="label">Contact</span>
+      <div class="rl"></div>
+    </div>
+    <div class="contact-block">
+      <div>
+        <h2>Let's build <em>reliable</em><br>software together.</h2>
+        <p class="sub">Automation-first · High-quality delivery</p>
+      </div>
+      <div class="contact-links">
+        <a class="clink" href="mailto:shrimalmeet2001@gmail.com">
+          ✉ shrimalmeet2001@gmail.com
+        </a>
+        <a class="clink" href="tel:8955251538">
+          ☏ 8955251538
+        </a>
+        <a class="clink" href="https://www.linkedin.com/in/meet-shrimal" target="_blank" rel="noopener">
+          ⌘ linkedin.com/in/meet-shrimal
+        </a>
+        <a class="clink" href="https://github.com/MeetShrimal19" target="_blank" rel="noopener">
+          ⌥ github.com/MeetShrimal19
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-name">Meet Shrimal</span>
+    <span class="footer-note">SDET · Chennai · 2026</span>
+  </footer>
+
+</div>
+
+
+
+</body>
+</html>
